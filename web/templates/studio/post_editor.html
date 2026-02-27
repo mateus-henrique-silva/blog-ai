@@ -1,0 +1,96 @@
+<form id="editor-form" method="POST"
+  action="{{if .Post}}/studio/posts/{{.Post.ID}}{{else}}/studio/posts{{end}}"
+  class="editor-form">
+
+  <div class="editor-layout">
+    <div class="editor-main">
+      <div class="form-group">
+        <label for="title">Title <span class="required">*</span></label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value="{{if .Post}}{{.Post.Title}}{{else if .Input}}{{.Input.Title}}{{end}}"
+          placeholder="Post title"
+          required
+          class="input-title"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="content_md">Content</label>
+        <textarea id="content_md" name="content_md">{{if .Post}}{{.Post.ContentMD}}{{else if .Input}}{{.Input.ContentMD}}{{end}}</textarea>
+      </div>
+    </div>
+
+    <aside class="editor-sidebar">
+      <div class="sidebar-panel">
+        <h3>Settings</h3>
+
+        <div class="form-group">
+          <label for="excerpt">Excerpt</label>
+          <textarea
+            id="excerpt"
+            name="excerpt"
+            rows="3"
+            placeholder="Short description for previews and SEO"
+          >{{if .Post}}{{.Post.Excerpt}}{{else if .Input}}{{.Input.Excerpt}}{{end}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input
+            type="text"
+            id="category"
+            name="category"
+            value="{{if .Post}}{{.Post.Category}}{{else if .Input}}{{.Input.Category}}{{end}}"
+            placeholder="e.g. machine-learning"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="tags">Tags <span class="hint">(comma-separated)</span></label>
+          <input
+            type="text"
+            id="tags"
+            name="tags"
+            value="{{if .Post}}{{.Post.Tags}}{{else if .Input}}{{.Input.Tags}}{{end}}"
+            placeholder="ai, golang, llm"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="cover_image">Cover Image URL</label>
+          <input
+            type="text"
+            id="cover_image"
+            name="cover_image"
+            value="{{if .Post}}{{.Post.CoverImage}}{{else if .Input}}{{.Input.CoverImage}}{{end}}"
+            placeholder="/static/uploads/image.jpg"
+          >
+        </div>
+      </div>
+
+      <div class="editor-actions">
+        <button type="submit" form="editor-form" class="btn btn-primary btn-block">Save Draft</button>
+        {{if .Post}}
+        {{if .Post.IsPublished}}
+        <button type="submit" form="unpublish-form" class="btn btn-warning btn-block" style="margin-top:8px">Unpublish</button>
+        {{else}}
+        <button type="submit" form="publish-form" class="btn btn-success btn-block" style="margin-top:8px">Publish</button>
+        {{end}}
+        <a href="/studio/posts" class="btn btn-ghost btn-block" style="margin-top:8px">← All Posts</a>
+        {{end}}
+      </div>
+    </aside>
+  </div>
+</form>
+
+{{/* Forms de publish/unpublish fora do form principal — HTML não suporta forms aninhados */}}
+{{if .Post}}
+{{if .Post.IsPublished}}
+<form id="unpublish-form" method="POST" action="/studio/posts/{{.Post.ID}}/unpublish"></form>
+{{else}}
+<form id="publish-form" method="POST" action="/studio/posts/{{.Post.ID}}/publish"></form>
+{{end}}
+{{end}}

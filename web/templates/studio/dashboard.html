@@ -1,0 +1,58 @@
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-label">Total Views</div>
+    <div class="stat-value">{{.TotalViews}}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Views Today</div>
+    <div class="stat-value">{{.TodayViews}}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">Published Posts</div>
+    <div class="stat-value">{{.TotalPosts}}</div>
+  </div>
+</div>
+
+{{if .TopPosts}}
+<div class="section">
+  <h2 class="section-title">Top Posts</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Post</th>
+        <th>Views</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .TopPosts}}
+      <tr>
+        <td>{{.Title}}</td>
+        <td>{{.ViewCount}}</td>
+        <td><a href="/posts/{{.Slug}}" target="_blank" class="table-link">View ↗</a></td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</div>
+{{end}}
+
+{{if .RecentViews}}
+<div class="section">
+  <h2 class="section-title">Views (Last 30 days)</h2>
+  <div class="chart-container">
+    <div class="bar-chart">
+      {{range .RecentViews}}
+      <div class="bar-item" title="{{.Day}}: {{.Count}} views">
+        <div class="bar" style="height: calc({{.Count}} * 1px); max-height: 100px;"></div>
+        <span class="bar-label">{{.Day}}</span>
+      </div>
+      {{end}}
+    </div>
+  </div>
+</div>
+{{end}}
+
+<div class="section">
+  <a href="/studio/posts/new" class="btn btn-primary">+ Write a new post</a>
+</div>

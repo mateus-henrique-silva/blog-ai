@@ -1,0 +1,30 @@
+<div class="page-container">
+  <div class="page-header">
+    <a href="/categories" class="breadcrumb">← Categories</a>
+    <h1>{{.Category}}</h1>
+  </div>
+
+  {{if .Posts}}
+  <div class="posts-list">
+    {{range .Posts}}
+    <article class="post-card post-card-row">
+      <div class="post-card-body">
+        <h2 class="post-card-title">
+          <a href="/posts/{{.Slug}}">{{.Title}}</a>
+        </h2>
+        {{if .Excerpt}}
+        <p class="post-card-excerpt">{{.Excerpt}}</p>
+        {{end}}
+        {{if .PublishedAt}}
+        <time class="post-date">{{.PublishedAt}}</time>
+        {{end}}
+      </div>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <div class="empty-state">
+    <p>No posts in this category yet.</p>
+  </div>
+  {{end}}
+</div>

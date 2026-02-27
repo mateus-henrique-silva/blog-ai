@@ -1,0 +1,56 @@
+{{if .Posts}}
+<table class="data-table posts-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Posts}}
+    <tr>
+      <td class="td-title">
+        <a href="/studio/posts/{{.ID}}/edit">{{.Title}}</a>
+      </td>
+      <td>{{if .Category}}{{.Category}}{{else}}<span class="muted">—</span>{{end}}</td>
+      <td>
+        <span class="badge badge-{{.Status}}">{{.Status}}</span>
+      </td>
+      <td>
+        {{if .PublishedAt}}
+        <time>{{.PublishedAt}}</time>
+        {{else}}
+        <span class="muted">Draft</span>
+        {{end}}
+      </td>
+      <td class="td-actions">
+        <a href="/studio/posts/{{.ID}}/edit" class="btn btn-sm">Edit</a>
+        {{if .IsPublished}}
+        <form method="POST" action="/studio/posts/{{.ID}}/unpublish" style="display:inline">
+          <button type="submit" class="btn btn-sm btn-warning">Unpublish</button>
+        </form>
+        {{else}}
+        <form method="POST" action="/studio/posts/{{.ID}}/publish" style="display:inline">
+          <button type="submit" class="btn btn-sm btn-success">Publish</button>
+        </form>
+        {{end}}
+        <form method="POST" action="/studio/posts/{{.ID}}/delete" style="display:inline"
+              onsubmit="return confirm('Delete this post permanently?')">
+          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+        {{if .IsPublished}}
+        <a href="/posts/{{.Slug}}" target="_blank" class="btn btn-sm">View ↗</a>
+        {{end}}
+      </td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{else}}
+<div class="empty-state">
+  <p>No posts yet. <a href="/studio/posts/new">Create your first post →</a></p>
+</div>
+{{end}}

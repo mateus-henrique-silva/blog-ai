@@ -1,0 +1,53 @@
+<article class="post-article">
+  <div class="post-header">
+    <div class="post-meta">
+      {{if .Post.Category}}
+      <a href="/categories/{{.Post.Category}}" class="post-category">{{.Post.Category}}</a>
+      {{end}}
+      {{if .Post.PublishedAt}}
+      <time class="post-date" datetime="{{.Post.PublishedAt}}">{{.Post.PublishedAt}}</time>
+      {{end}}
+    </div>
+    <h1 class="post-title">{{.Post.Title}}</h1>
+    {{if .Post.Excerpt}}
+    <p class="post-excerpt">{{.Post.Excerpt}}</p>
+    {{end}}
+    {{if .Post.TagList}}
+    <div class="post-tags">
+      {{range .Post.TagList}}
+      <span class="tag">{{.}}</span>
+      {{end}}
+    </div>
+    {{end}}
+  </div>
+
+  {{if .Post.CoverImage}}
+  <div class="post-cover">
+    <img src="{{.Post.CoverImage}}" alt="{{.Post.Title}}">
+  </div>
+  {{end}}
+
+  <div class="post-content prose">
+    {{safeHTML .Post.ContentHTML}}
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-author-card">
+      {{if .Author.AvatarURL}}
+      <img src="{{.Author.AvatarURL}}" alt="{{.Author.Name}}" class="post-author-avatar">
+      {{else}}
+      <div class="post-author-avatar post-author-initials">
+        <span>{{slice .Author.Name 0 1}}</span>
+      </div>
+      {{end}}
+      <div class="post-author-info">
+        <span class="post-author-label">Written by</span>
+        <a href="/about" class="post-author-name">{{.Author.Name}}</a>
+        <span class="post-author-role">{{.Author.Role}}{{if .Author.Company}} · {{.Author.Company}}{{end}}</span>
+      </div>
+      <a href="{{.Author.LinkedInURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm post-author-link">
+        LinkedIn ↗
+      </a>
+    </div>
+  </footer>
+</article>

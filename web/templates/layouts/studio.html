@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Title}} — Studio</title>
+  <link rel="stylesheet" href="/static/css/studio.css">
+  {{if .LoadEditor}}
+  <link rel="stylesheet" href="/static/js/easymde.min.css">
+  {{end}}
+</head>
+<body class="studio-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="/studio/dashboard">Studio</a>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/studio/dashboard" class="nav-item {{if eq .Section "dashboard"}}active{{end}}">
+        <span class="nav-icon">⊞</span> Dashboard
+      </a>
+      <a href="/studio/posts" class="nav-item {{if eq .Section "posts"}}active{{end}}">
+        <span class="nav-icon">≡</span> All Posts
+      </a>
+      <a href="/studio/metrics" class="nav-item {{if eq .Section "metrics"}}active{{end}}">
+        <span class="nav-icon">◈</span> Metrics
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      {{if .User}}
+      <span class="sidebar-user">{{.User.Username}}</span>
+      {{end}}
+      <form method="POST" action="/studio/logout">
+        <button type="submit" class="btn-signout">Sign out</button>
+      </form>
+    </div>
+  </aside>
+
+  <div class="studio-body">
+    <header class="studio-topbar">
+      <h1 class="studio-title">{{.Title}}</h1>
+      {{if eq .Section "posts"}}
+      <a href="/studio/posts/new" class="btn btn-primary">+ New Post</a>
+      {{end}}
+    </header>
+
+    <main class="studio-content">
+      {{if .Flash}}
+      <div class="alert alert-success">{{.Flash}}</div>
+      {{end}}
+      {{if .Error}}
+      <div class="alert alert-error">{{.Error}}</div>
+      {{end}}
+      {{embed}}
+    </main>
+  </div>
+
+  {{if .LoadEditor}}
+  <script src="/static/js/easymde.min.js"></script>
+  <script src="/static/js/editor.js"></script>
+  {{end}}
+</body>
+</html>
