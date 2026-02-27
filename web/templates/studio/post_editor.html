@@ -1,4 +1,4 @@
-<form method="POST"
+<form id="editor-form" method="POST"
   action="{{if .Post}}/studio/posts/{{.Post.ID}}{{else}}/studio/posts{{end}}"
   class="editor-form">
 
@@ -72,16 +72,12 @@
       </div>
 
       <div class="editor-actions">
-        <button type="submit" class="btn btn-primary btn-block">Save Draft</button>
+        <button type="submit" form="editor-form" class="btn btn-primary btn-block">Save Draft</button>
         {{if .Post}}
         {{if .Post.IsPublished}}
-        <form method="POST" action="/studio/posts/{{.Post.ID}}/unpublish" style="margin-top:8px">
-          <button type="submit" class="btn btn-warning btn-block">Unpublish</button>
-        </form>
+        <button type="submit" form="unpublish-form" class="btn btn-warning btn-block" style="margin-top:8px">Unpublish</button>
         {{else}}
-        <form method="POST" action="/studio/posts/{{.Post.ID}}/publish" style="margin-top:8px">
-          <button type="submit" class="btn btn-success btn-block">Publish</button>
-        </form>
+        <button type="submit" form="publish-form" class="btn btn-success btn-block" style="margin-top:8px">Publish</button>
         {{end}}
         <a href="/studio/posts" class="btn btn-ghost btn-block" style="margin-top:8px">← All Posts</a>
         {{end}}
@@ -89,3 +85,12 @@
     </aside>
   </div>
 </form>
+
+{{/* Forms de publish/unpublish fora do form principal — HTML não suporta forms aninhados */}}
+{{if .Post}}
+{{if .Post.IsPublished}}
+<form id="unpublish-form" method="POST" action="/studio/posts/{{.Post.ID}}/unpublish"></form>
+{{else}}
+<form id="publish-form" method="POST" action="/studio/posts/{{.Post.ID}}/publish"></form>
+{{end}}
+{{end}}
