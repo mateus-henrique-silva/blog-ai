@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{.Title}} — AI Studies</title>
+  <meta name="description" content="Thoughts and notes on AI, machine learning, and technology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="/static/css/public.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="/" class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">AI Studies</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/categories">Categories</a></li>
+        <li><a href="/timeline">Timeline</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-icon">◑</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    {{embed}}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>AI Studies — notes on the future.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const stored = localStorage.getItem('theme') || 'light';
+      root.setAttribute('data-theme', stored);
+
+      btn.addEventListener('click', function() {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Environment
+.env
+
+# Binary
+server
+*.exe
+
+# Database
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# Uploads (user content, not source)
+web/static/uploads/*
+!web/static/uploads/.gitkeep
+
+# Go
+*.test
+*.out
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,69 @@
+{{if .Featured}}
+<section class="hero">
+  <div class="hero-container">
+    {{$f := .Featured}}
+    {{if $f.CoverImage}}
+    <div class="hero-image">
+      <img src="{{$f.CoverImage}}" alt="{{$f.Title}}">
+    </div>
+    {{end}}
+    <div class="hero-content">
+      {{if $f.Category}}
+      <span class="post-category">{{$f.Category}}</span>
+      {{end}}
+      <h1 class="hero-title">
+        <a href="/posts/{{$f.Slug}}">{{$f.Title}}</a>
+      </h1>
+      {{if $f.Excerpt}}
+      <p class="hero-excerpt">{{$f.Excerpt}}</p>
+      {{end}}
+      {{if $f.PublishedAt}}
+      <time class="post-date" datetime="{{$f.PublishedAt}}">{{$f.PublishedAt}}</time>
+      {{end}}
+      <a href="/posts/{{$f.Slug}}" class="btn btn-primary">Read more →</a>
+    </div>
+  </div>
+</section>
+{{end}}
+
+<div class="page-container">
+  {{if .Categories}}
+  <section class="category-pills">
+    {{range .Categories}}
+    <a href="/categories/{{.}}" class="pill">{{.}}</a>
+    {{end}}
+  </section>
+  {{end}}
+
+  {{if .Posts}}
+  <section class="posts-grid">
+    {{range .Posts}}
+    <article class="post-card">
+      {{if .CoverImage}}
+      <a href="/posts/{{.Slug}}" class="post-card-image">
+        <img src="{{.CoverImage}}" alt="{{.Title}}" loading="lazy">
+      </a>
+      {{end}}
+      <div class="post-card-body">
+        {{if .Category}}
+        <a href="/categories/{{.Category}}" class="post-category">{{.Category}}</a>
+        {{end}}
+        <h2 class="post-card-title">
+          <a href="/posts/{{.Slug}}">{{.Title}}</a>
+        </h2>
+        {{if .Excerpt}}
+        <p class="post-card-excerpt">{{.Excerpt}}</p>
+        {{end}}
+        {{if .PublishedAt}}
+        <time class="post-date" datetime="{{.PublishedAt}}">{{.PublishedAt}}</time>
+        {{end}}
+      </div>
+    </article>
+    {{end}}
+  </section>
+  {{else}}
+  <div class="empty-state">
+    <p>No posts published yet. Check back soon.</p>
+  </div>
+  {{end}}
+</div>

@@ -1,0 +1,20 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Categories</h1>
+  </div>
+
+  {{if .Categories}}
+  <div class="categories-grid">
+    {{range .Categories}}
+    <a href="/categories/{{.}}" class="category-card">
+      <span class="category-name">{{.}}</span>
+      <span class="category-arrow">→</span>
+    </a>
+    {{end}}
+  </div>
+  {{else}}
+  <div class="empty-state">
+    <p>No categories yet.</p>
+  </div>
+  {{end}}
+</div>
