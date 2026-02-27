@@ -1,0 +1,66 @@
+<div class="about-page page-container">
+  <div class="about-hero">
+    {{if .Author.AvatarURL}}
+    <img src="{{.Author.AvatarURL}}" alt="{{.Author.Name}}" class="about-avatar">
+    {{else}}
+    <div class="about-avatar-placeholder">
+      <span>{{slice .Author.Name 0 1}}</span>
+    </div>
+    {{end}}
+
+    <div class="about-header">
+      <h1 class="about-name">{{.Author.Name}}</h1>
+      <p class="about-role">
+        {{.Author.Role}}
+        {{if .Author.Company}} · <span class="about-company">{{.Author.Company}}</span>{{end}}
+      </p>
+      {{if .Author.Location}}
+      <p class="about-location">📍 {{.Author.Location}}</p>
+      {{end}}
+
+      <div class="about-links">
+        {{if .Author.LinkedInURL}}
+        <a href="{{.Author.LinkedInURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          LinkedIn ↗
+        </a>
+        {{end}}
+        {{if .Author.GitHubURL}}
+        <a href="{{.Author.GitHubURL}}" target="_blank" rel="noopener noreferrer" class="btn">
+          GitHub ↗
+        </a>
+        {{end}}
+      </div>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <section class="about-section">
+      <h2>About</h2>
+      <p class="about-bio">{{.Author.Bio}}</p>
+    </section>
+
+    {{if .Author.Skills}}
+    <section class="about-section">
+      <h2>Skills</h2>
+      <div class="about-skills">
+        {{range .Author.Skills}}
+        <span class="skill-tag">{{.}}</span>
+        {{end}}
+      </div>
+    </section>
+    {{end}}
+
+    <section class="about-section">
+      <h2>This Blog</h2>
+      <p>
+        Este espaço é onde documento minha jornada de estudos sobre Inteligência Artificial —
+        modelos de linguagem, aprendizado de máquina, arquiteturas de sistemas de IA e tudo mais
+        que surge nessa fronteira entre engenharia de software e ciência de dados.
+      </p>
+      <p>
+        Se você tem interesse nos mesmos temas, fique à vontade para
+        <a href="{{.Author.LinkedInURL}}" target="_blank" rel="noopener noreferrer">se conectar no LinkedIn</a>.
+      </p>
+    </section>
+  </div>
+</div>

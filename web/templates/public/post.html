@@ -30,4 +30,24 @@
   <div class="post-content prose">
     {{safeHTML .Post.ContentHTML}}
   </div>
+
+  <footer class="post-footer">
+    <div class="post-author-card">
+      {{if .Author.AvatarURL}}
+      <img src="{{.Author.AvatarURL}}" alt="{{.Author.Name}}" class="post-author-avatar">
+      {{else}}
+      <div class="post-author-avatar post-author-initials">
+        <span>{{slice .Author.Name 0 1}}</span>
+      </div>
+      {{end}}
+      <div class="post-author-info">
+        <span class="post-author-label">Written by</span>
+        <a href="/about" class="post-author-name">{{.Author.Name}}</a>
+        <span class="post-author-role">{{.Author.Role}}{{if .Author.Company}} · {{.Author.Company}}{{end}}</span>
+      </div>
+      <a href="{{.Author.LinkedInURL}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm post-author-link">
+        LinkedIn ↗
+      </a>
+    </div>
+  </footer>
 </article>

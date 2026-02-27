@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/mhtecdev/blog-ai/internal/model"
 	"github.com/mhtecdev/blog-ai/internal/service"
 )
 
@@ -40,7 +41,8 @@ func (h *PostHandler) Show(c *fiber.Ctx) error {
 	h.analytics.RecordView(post.ID, ip, ua)
 
 	return c.Render("public/post", fiber.Map{
-		"Title": post.Title,
-		"Post":  post,
+		"Title":  post.Title,
+		"Post":   post,
+		"Author": model.Author,
 	}, "layouts/base")
 }

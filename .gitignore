@@ -1,8 +1,9 @@
 # Environment
 .env
 
-# Binary
-server
+# Binary (only the compiled binary at root, not the cmd/server/ source directory)
+/server
+/server.exe
 *.exe
 
 # Database

@@ -436,6 +436,111 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   color: var(--text-muted);
 }
 
+/* ─── Post Author Card ───────────────────────────────────────────────────── */
+.post-footer {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+.post-author-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  margin-top: 48px;
+}
+.post-author-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.post-author-initials {
+  background: var(--accent-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.post-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.post-author-label { font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+.post-author-name  { font-size: 1rem; font-weight: 700; color: var(--text); }
+.post-author-name:hover { color: var(--accent); text-decoration: none; }
+.post-author-role  { font-size: .85rem; color: var(--text-muted); }
+.post-author-link  { flex-shrink: 0; }
+
+/* ─── About Page ─────────────────────────────────────────────────────────── */
+.about-page { max-width: 760px; margin: 0 auto; }
+.about-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 600px) { .about-hero { flex-direction: column; align-items: center; text-align: center; } }
+.about-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.about-avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--accent-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.about-header { display: flex; flex-direction: column; gap: 6px; }
+.about-name   { font-size: 2rem; font-weight: 800; margin: 0; }
+.about-role   { font-size: 1.05rem; color: var(--text-muted); }
+.about-company { color: var(--accent); }
+.about-location { font-size: .9rem; color: var(--text-muted); }
+.about-links  { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+
+.about-content { display: flex; flex-direction: column; gap: 40px; }
+.about-section h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.about-bio { font-size: 1.05rem; line-height: 1.8; color: var(--text); }
+.about-section p { font-size: 1rem; line-height: 1.8; color: var(--text); margin-bottom: 12px; }
+
+.about-skills { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: .875rem;
+  font-weight: 500;
+  transition: border-color .15s, color .15s;
+}
+.skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .post-title { font-size: 1.75rem; }
